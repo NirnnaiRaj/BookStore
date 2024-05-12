@@ -1,19 +1,4 @@
-﻿$(document).ready(function () {
-    $('#searchInput').on('input', function () {
-        var searchQuery = $(this).val().toLowerCase(); // Convert search query to lowercase for case-insensitive search
-        $('#booksTable tbody tr').each(function () {
-            var title = $(this).find('td:nth-child(1)').text().toLowerCase(); // Get the title column value and convert to lowercase
-            var author = $(this).find('td:nth-child(2)').text().toLowerCase(); // Get the author column value and convert to lowercase
-            var genre = $(this).find('td:nth-child(3)').text().toLowerCase(); // Get the genre column value and convert to lowercase
-            if (title.includes(searchQuery) || author.includes(searchQuery) || genre.includes(searchQuery)) {
-                $(this).show(); // Show the row if it matches the search query in title, author, or genre
-            } else {
-                $(this).hide(); // Hide the row if it doesn't match the search query
-            }
-        });
-    });
-});
-
+﻿
 var book = (function () {
 
     var viewDetails=(bookId)=> {

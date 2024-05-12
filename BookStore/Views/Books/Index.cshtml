@@ -1,18 +1,10 @@
-﻿
-@model List<BookStore.Business.ViewModels.BooksModel>
+﻿@model List<BookStore.Business.ViewModels.BooksModel>
 
 <h2>Books List</h2>
 
-<div class="row mb-3">
-    <div class="col-md-6">
-        <div class="input-group">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search Books">
-            <div class="input-group-append">
-                <button id="searchButton" class="btn btn-primary" type="button">Search</button>
-            </div>
-        </div>
-    </div>
-</div>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
 @if (Model != null && Model.Any())
 {
@@ -55,10 +47,15 @@ else
 {
     <p>No books available.</p>
 }
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 
-<script src="~/js/Book.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#booksTable').DataTable();
+    });
+</script>
 <style>
     .input-group-append {
-        margin-left: 10px; /* Adjust the margin as needed */
+        margin-left: 6px; /* Adjust the margin as needed */
     }
 </style>
