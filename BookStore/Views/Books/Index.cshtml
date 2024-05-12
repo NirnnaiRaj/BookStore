@@ -1,0 +1,64 @@
+﻿
+@model List<BookStore.Business.ViewModels.BooksModel>
+
+<h2>Books List</h2>
+
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="input-group">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search Books">
+            <div class="input-group-append">
+                <button id="searchButton" class="btn btn-primary" type="button">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <table id="booksTable" class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Genre</th>
+                <th>Price</th>
+                <th>Publish Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var book in Model)
+            {
+                <tr>
+                    <td>@book.Title</td>
+                    <td>@book.Author</td>
+                    <td>@book.Genre</td>
+                    <td>@book.Price</td>
+                    <td>@book.PublishDate.ToShortDateString()</td>
+                    <td>@(book.Status ? "Available" : "Not Available")</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="book.viewDetails('@book.Id','@book.Status')">View Details</button>
+                        <button class="btn btn-success" onclick="book.addToCart('@book.Id','@book.Status')">
+                            <img src="~/images/cart.png" alt="Cart" style="height: 20px; margin-right: 5px;" />
+                            Add to Cart
+                        </button>
+                        <input type="hidden" class="bookId" value="@book.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No books available.</p>
+}
+
+<script src="~/js/Book.js"></script>
+<style>
+    .input-group-append {
+        margin-left: 10px; /* Adjust the margin as needed */
+    }
+</style>

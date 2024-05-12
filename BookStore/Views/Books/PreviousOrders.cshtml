@@ -1,0 +1,42 @@
+﻿@model List<BookStore.Business.ViewModels.CartModel>
+
+<h2>Previous Orders</h2>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th></th> <!-- Actions column for adjusting quantity -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td hidden="hidden" class="itemId">@item.Id</td>
+                    <td hidden="hidden" class="bookId">@item.Books.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.Price</td>
+                    <td>
+                        <div class="input-group">
+                            <input type="text" class="form-control quantity-input" value="@item.Quantity" readonly>
+                        </div>
+                    </td>
+                    <td>@(item.Price * item.Quantity)</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No orders yet.</p>
+}
+
+<script src="~/js/Book.js"></script>
